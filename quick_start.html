@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <link rel="stylesheet" href="node_modules/webix/webix.css">
+    <script src="node_modules/webix/webix.js"></script>
+    <title>Webix introduction</title>
+</head>
+<body>
+
+    <script type="text/javascript" charset="utf-8">
+        webix.ui({
+            rows:[
+                {   view:"template",
+                    type:"header", template:"My App!"},
+                {   view:"datatable",
+                    autoConfig:true,
+                    data:{
+                        title: "My Fair Lady", year:1964, votes:533848, rating:8.9, rank:5
+                    }
+                }
+            ]
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
     <link rel="stylesheet" href="node_modules/webix/webix.css">
     <script src="node_modules/webix/webix.js"></script>
     <title>Webix introduction</title>
+    <style>
+        #app_here{
+            width:1000px;
+            height:400px;
+            margin:20px;
+        }
+    </style>
 </head>
 <body>
-
+    <div id="app_here"></div>
+    <script src="json/treedata.json"></script>  
+    <script src="json/small_film_set.json"></script>         
     <script type="text/javascript" charset="utf-8">
-        webix.ui({
-            rows:[
-                {   view:"template",
-                    type:"header", template:"My App!"},
-                {   view:"datatable",
-                    autoConfig:true,
-                    data:{
-                        title: "My Fair Lady", year:1964, votes:533848, rating:8.9, rank:5
-                    }
-                }
-            ]
-        })
+    webix.ui({
+    container:"app_here",
+        rows:[
+            { type:"header", template:"My App!" },
+            { cols:[
+                { view:"tree", id:"mytree", gravity:0.3, select:true, data:tree_data },
+                { view:"resizer" },
+                { view:"datatable", id:"mydatatable", autoConfig:true, data:small_film_set}
+            ]}
+        ]
+    });
+        
     </script>
     
 </body>
