@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="node_modules/webix/webix.css">
+    <script src="node_modules/webix/webix_debug.js"></script>
+    <title>Start coding with Webix</title>
+</head>
+<body>
+   <div id="dataA" style="width:500px;height:150px;"></div>
+   <div id="dataB" style="width:500px;height:300px;"></div>
+     
+    <script type="text/javascript" charset="utf-8">
+    var simple_
+    webix.ui({
+        view:"dataview",
+        id:"mydataview1",
+        container:"dataA"
+    });
+        
+    webix.ui({
+        view:"dataview",
+        id:"mydataview2",
+        container:"dataB"
+    });
+
+    </script>
+    
+</body>
+</html>
