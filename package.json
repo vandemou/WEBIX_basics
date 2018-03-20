@@ -1,0 +1,17 @@
+{
+  "name": "webix_basics",
+  "version": "1.0.0",
+  "description": "Basic Webix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webix"
+  ],
+  "author": "Patrick",
+  "license": "ISC",
+  "dependencies": {
+    "webix": "^5.2.1"
+  }
+}
