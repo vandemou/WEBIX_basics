@@ -1,11 +1,29 @@
 var tree_data = [{
         id: "1",
-        type:"folder",
-        value:"Music",
-        css:"folder_music",
-        data:[
-            
-        ]
-        
+        type: "folder",
+        value: "Music",
+        css: "folder_music",
+        data: [{
+            value: "Jimi Hendrix"
+
+        }]
+    },
+    {
+        id: "2",
+        type: "folder",
+        value: "Magic",
+        css: "folder_music",
+        data: [{
+            value: "Hans Kazan"
+        }]
+    },
+    {
+        id: "3",
+        type: "folder",
+        value: "Dancing",
+        css: "folder_music",
+        data: [{
+            value: "Michael Jackson"
+        }]
     }
 ]
