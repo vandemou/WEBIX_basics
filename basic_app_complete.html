@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="node_modules/webix/webix.css">
+    <script src="node_modules/webix/webix_debug.js"></script>
+    <title>Setting Components</title>
+</head>
+
+<body>
+    <script src="json/small_film_set.json"></script>
+    <script type="text/javascript" charset="utf-8">
+        webix.ui({
+            width: 500,
+            rows: [{
+                    view: "toolbar", //create the toolbar
+                    elements: [{ //create the buttons
+                            view: "button",
+                            value: "Add",
+                            width: 70,
+                            click: "add_row"
+                        },
+                        {
+                            view: "button",
+                            value: "Delete",
+                            width: 70,
+                            click: "delete_row"
+
+                        },
+                        {
+                            view: "button",
+                            value: "Update",
+                            width: 70,
+                            click: "update_row"
+                        },
+                        {
+                            view: "button",
+                            value: "Clear Form",
+                            width: 100,
+                            click: "$$('myform).clear())"
+                        }
+                    ]
+                },
+                {
+                    cols: [{
+                            view: "form",
+                            id: "myform",
+                            elements: [{
+                                    view: "text",
+                                    name: "title",
+                                    placeholder: "Title"
+                                },
+                                {
+                                    view: "text",
+                                    name: "year",
+                                    placeholder: "Year"
+                                }
+                            ]
+                        },
+                        {
+                            view: "list",
+                            id: "mylist",
+                            template: "#year# - #title#",
+                            select: true,
+                            url: "common/connector2.php",
+                            datatype: "json"
+                        }
+                    ]
+                }
+            ]
+        });
+
+
+
+
+        // var Add = $$("");
+
+        // delete row function
+        function delete_row() {
+            var id = $$("mylist").getSelectedId();
+            webix.confirm({
+                title: "Delete",
+                text: "Are you sure you want to delete the selected item?",
+                callback: function (result) {
+                    if (result) {
+                        $$("mylist").remove(id);
+                    }
+                }
+            })
+
+        };
+
+        // Add row fucntion
+        function add_row() {
+            $$("mylist").add({
+                title: $$("myform").getValues().title,
+                year: $$("myform").getValues().year
+            });
+        };
+
+        $$("mylist").attachEvent("onAfterSelect", function (id) {
+            $$("myform").setValues({
+                title: $$("mylist").getItem(id).title,
+                year: $$("mylist").getItem(id).year
+            });
+        });
+
+        function update_row() {
+            var sel = $$('mylist').getSelectedId(); //checks if the item is selected
+            if (!sel) return; //if not, function execution is stopped
+
+            var value1 = $$('myform').getValues().title;
+            var value2 = $$('myform').getValues().year;
+
+            var item = $$('mylist').getItem(sel); //select item object
+            item.title = value1;
+            item.year = value2;
+            $$('mylist').updateItem(sel, item);
+        }
+
+
+        // DataProcessor Initialization
+        var dp = new webix.DataProcessor({
+            master: $$('mylist'), // specifies the desired component
+            url: "../common/connector.php" // specifies the server API endpoint
+        });
+
+        webix.ui({
+            view: "toolbar",
+            cols: [{},
+                {
+                    view: "button",
+                    id: "update",
+                    value: "Save",
+                    width: 100,
+                    click: "$$('myform').save()"
+                }
+            ] // the new function for the button
+        });
+
+        $$("myform").bind($$("mylist")); //component binding
+    </script>
+
+</body>
+
+</html>
